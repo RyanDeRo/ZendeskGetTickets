@@ -1,0 +1,31 @@
+#!/usr/bin/env python2.7
+
+
+from urllib.parse import urlencode
+
+import requests
+
+credentials = '<LOGIN EMAIL>', '<PASSWORD>'
+session = requests.Session()
+session.auth = credentials
+
+params = {
+    'query': 'type:ticket created>2016-08-01 created<2018-08-05', #Where to edit the search params for the call#
+    'sort_by': 'created_at',
+    'sort_order': 'asc'
+    }
+
+url = 'https://<SUBDOMAIN>.zendesk.com/api/v2/search.json?' + urlencode(params)
+response = session.get(url)
+if response.status_code != 200:
+    print('Status:', response.status_code, 'Problem with this request. Exiting.')
+    exit()
+
+
+#Print the subject of each ticket in the results#
+
+data = response.json()
+for result in data['results']:
+    print(result['subject'])
+    print(result['status'])
+          
