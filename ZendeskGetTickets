@@ -10,7 +10,7 @@ session = requests.Session()
 session.auth = credentials
 
 params = {
-    'query': 'type:ticket created>2016-08-01 created<2018-08-05', #Where to edit the search params for the call#
+    'query': 'type:user created>2016-08-01 created<2018-08-05', #Where to edit the search params for the call#
     'sort_by': 'created_at',
     'sort_order': 'asc'
     }
@@ -26,6 +26,6 @@ if response.status_code != 200:
 
 data = response.json()
 for result in data['results']:
-    print(result['subject'])
-    print(result['status'])
+    print(result['name'])
+    print(result['email'])
           
