@@ -2,7 +2,7 @@ from urllib.parse import urlencode
 
 import requests
 
-credentials = 'rderobertis@zendesk.com', '@Password1'
+credentials = 'rderobertis@zendesk.com', '<PASSWORD>'
 session = requests.Session()
 session.auth = credentials
 
