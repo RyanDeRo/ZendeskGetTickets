@@ -7,19 +7,19 @@ session = requests.Session()
 session.auth = credentials
 
 params = {
-    'query': 'type:user role:admin', #Where to edit the search params for the call, what object and other criteria#
+    'query': 'type:user role:admin', #Where to edit the search params for the call, what object and other criteria, currently finding users with role type of admin#
     'sort_by': 'created_at',
     'sort_order': 'asc'
     }
 
-url = 'https://z3nblades.zendesk.com/api/v2/search.json?' + urlencode(params)
+url = 'https://z3nblades.zendesk.com/api/v2/search.json?' + urlencode(params) #Edit the URL to be your subdomain#
 response = session.get(url)
 if response.status_code != 200:
     print('Status:', response.status_code, 'Problem with this request. Exiting.')
     exit()
 
 
-#Print the subject of each user in the results#
+#Print the name/email of each user in the results#
 
 data = response.json()
 for result in data['results']:
