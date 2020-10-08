@@ -19,7 +19,7 @@ if response.status_code != 200:
     exit()
 
 
-#Print the name/email of each user in the results#
+#Print the name and email of each user in the results#
 
 data = response.json()
 for result in data['results']:
